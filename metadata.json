@@ -1,0 +1,5 @@
+{
+  "name": "Dr. Umesh Chowdhury's Clinic",
+  "description": "Trusted medical clinic in College Street, Kolkata. Expert diagnosis and compassionate treatment by Dr. Umesh Chowdhury.",
+  "requestFramePermissions": ["geolocation"]
+}

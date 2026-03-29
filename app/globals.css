@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0B4F6C;
+  --color-accent: #2EC4B6;
+  --color-warm-white: #F8F6F0;
+  --color-gold: #C9A84C;
+  --color-text-dark: #1A1A2E;
+  --color-text-muted: #6B7A8D;
+  --color-success: #27AE60;
+
+  --font-playfair: var(--font-playfair), serif;
+  --font-source-sans: var(--font-source-sans), sans-serif;
+  --font-montserrat: var(--font-montserrat), sans-serif;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair;
+  }
+  
+  .section-label {
+    @apply font-montserrat uppercase tracking-[0.2em] text-xs font-semibold text-accent mb-2 block;
+  }
+}
+
+@layer utilities {
+  .glass-nav {
+    @apply bg-white/80 backdrop-blur-md border-b border-gray-100;
+  }
+}
