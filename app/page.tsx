@@ -502,22 +502,53 @@ const ContactCTA = () => {
           </a>
         </div>
 
-        <form className="bg-white/5 backdrop-blur-md p-8 md:p-10 rounded-3xl border border-white/10 shadow-2xl" onSubmit={(e) => e.preventDefault()}>
+        <form
+          id="contact-form"
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          className="bg-white/5 backdrop-blur-md p-8 md:p-10 rounded-3xl border border-white/10 shadow-2xl"
+          onSubmit={async (e) => {
+            e.preventDefault();
+            const form = e.currentTarget;
+            const formData = new FormData(form);
+            try {
+              const response = await fetch('/__forms.html', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
+              });
+              if (response.ok) {
+                alert('Thank you! Your message has been sent successfully.');
+                form.reset();
+              } else {
+                alert('Something went wrong. Please try again.');
+              }
+            } catch {
+              alert('Network error. Please try again later.');
+            }
+          }}
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p style={{ display: 'none' }}>
+            <label>Don&apos;t fill this out: <input name="bot-field" /></label>
+          </p>
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div className="space-y-2">
-              <label className="text-xs font-montserrat uppercase tracking-widest text-white/50">Your Name</label>
-              <input type="text" className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent transition-colors" placeholder="Full Name" />
+              <label htmlFor="name" className="text-xs font-montserrat uppercase tracking-widest text-white/50">Your Name</label>
+              <input id="name" name="name" type="text" required className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent transition-colors" placeholder="Full Name" />
             </div>
             <div className="space-y-2">
-              <label className="text-xs font-montserrat uppercase tracking-widest text-white/50">Phone Number</label>
-              <input type="tel" className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent transition-colors" placeholder="098300 06969" />
+              <label htmlFor="phone" className="text-xs font-montserrat uppercase tracking-widest text-white/50">Phone Number</label>
+              <input id="phone" name="phone" type="tel" required className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent transition-colors" placeholder="098300 06969" />
             </div>
           </div>
           <div className="space-y-2 mb-8">
-            <label className="text-xs font-montserrat uppercase tracking-widest text-white/50">Message / Preferred Time</label>
-            <textarea rows={4} className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent transition-colors resize-none" placeholder="Tell us how we can help..." />
+            <label htmlFor="message" className="text-xs font-montserrat uppercase tracking-widest text-white/50">Message / Preferred Time</label>
+            <textarea id="message" name="message" rows={4} className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent transition-colors resize-none" placeholder="Tell us how we can help..." />
           </div>
-          <button type="submit" className="w-full bg-accent text-white py-4 rounded-xl font-bold text-lg hover:bg-accent/90 transition-all shadow-lg">
+          <button id="send-message-btn" type="submit" className="w-full bg-accent text-white py-4 rounded-xl font-bold text-lg hover:bg-accent/90 transition-all shadow-lg">
             Send Message
           </button>
         </form>
