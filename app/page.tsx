@@ -156,17 +156,14 @@ const Hero = () => {
           viewport={{ once: true }}
           className="hidden md:flex justify-center relative"
         >
-          {/* Abstract Medical Illustration */}
+          {/* Doctor Image */}
           <div className="relative w-full aspect-square max-w-md">
             <div className="absolute inset-0 bg-accent/10 rounded-full animate-pulse" />
             <div className="absolute inset-10 border-2 border-gold/30 rounded-full animate-[spin_20s_linear_infinite]" />
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-64 h-64 bg-white rounded-3xl shadow-2xl flex items-center justify-center relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-2 bg-accent" />
-                <Stethoscope size={120} className="text-primary/20" />
-                <div className="absolute bottom-6 right-6 text-accent">
-                  <HeartPulse size={48} />
-                </div>
+              <div className="w-72 h-72 bg-white rounded-3xl shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-2 bg-accent z-10" />
+                <img src="/doctor-image.png" alt="Dr. Umesh Chowdhury" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
@@ -221,9 +218,7 @@ const About = () => {
         >
           <div className="aspect-[4/5] bg-white rounded-2xl border-2 border-accent/20 p-4 shadow-2xl relative overflow-hidden group">
             <div className="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors" />
-            <div className="w-full h-full bg-gray-100 rounded-xl flex items-center justify-center text-primary/10">
-              <span className="text-9xl font-playfair font-bold">UC</span>
-            </div>
+            <img src="/doctor-image.png" alt="Dr. Umesh Chowdhury" className="w-full h-full object-cover rounded-xl" />
             <div className="absolute bottom-8 left-8 bg-gold text-white px-4 py-2 rounded-lg font-bold shadow-lg transform -rotate-3">
               Est. Practice
             </div>
